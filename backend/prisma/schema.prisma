@@ -1,11 +1,5 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
 
 model User {
   id           String   @id @default(cuid())
@@ -26,24 +20,18 @@ model User {
 }
 
 model Post {
-  id        String     @id @default(cuid())
+  id        String   @id @default(cuid())
   authorId  String
   content   String
-  tags      String     @default("")
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  author    User       @relation(fields: [authorId], references: [id])
+  tags      String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
   feedbacks Feedback[]
   comments  Comment[]
 }
 
-enum FeedbackType {
-  LIKE
-  INSIGHT
-  QUESTION
-  HIRE_ME
-  REFER
-}
+enum FeedbackType { LIKE INSIGHT QUESTION HIRE_ME REFER }
 
 model Feedback {
   id        String       @id @default(cuid())
@@ -54,7 +42,6 @@ model Feedback {
   createdAt DateTime     @default(now())
   post      Post         @relation(fields: [postId], references: [id])
   author    User         @relation(fields: [authorId], references: [id])
-
   @@index([postId, type])
 }
 
@@ -66,7 +53,6 @@ model Comment {
   createdAt DateTime @default(now())
   post      Post     @relation(fields: [postId], references: [id])
   author    User     @relation(fields: [authorId], references: [id])
-
   @@index([postId, createdAt])
 }
 
@@ -77,7 +63,6 @@ model Follow {
   createdAt    DateTime @default(now())
   follower     User     @relation("followers", fields: [followerId], references: [id])
   following    User     @relation("following", fields: [followingId], references: [id])
-
   @@unique([followerId, followingId])
 }
 
@@ -98,7 +83,6 @@ model Job {
   postedBy    User     @relation("JobPostedBy", fields: [postedById], references: [id])
   applications Application[]
   savedBy     SavedJob[]
-
   @@index([title, company])
   @@index([location, remote])
 }
@@ -112,18 +96,10 @@ model Application {
   createdAt DateTime @default(now())
   job       Job      @relation(fields: [jobId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
-
   @@unique([jobId, userId])
 }
 
-enum AppStatus {
-  PENDING
-  REVIEWING
-  REJECTED
-  INTERVIEW
-  OFFER
-  HIRED
-}
+enum AppStatus { PENDING REVIEWING REJECTED INTERVIEW OFFER HIRED }
 
 model SavedJob {
   id      String @id @default(cuid())
@@ -132,6 +108,5 @@ model SavedJob {
   createdAt DateTime @default(now())
   job     Job    @relation(fields: [jobId], references: [id])
   user    User   @relation(fields: [userId], references: [id])
-
   @@unique([jobId, userId])
 }

@@ -46,6 +46,4 @@ app.use('/api/apps', appsRouter);
 
 app.use('/', express.static('../frontend'));
 
-app.listen(PORT, () => {
-  console.log(`WorkThread server running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => { console.log(`WorkThread server running on http://localhost:${PORT}`); });

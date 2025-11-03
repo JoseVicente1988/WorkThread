@@ -108,7 +108,7 @@ async function loadFeed() {
     container.innerHTML = '';
 
     posts.forEach((p, idx) => {
-      // Slot patrocinado (AdSense) cada 5 items - opcional
+      // AdSense slot cada 5 items
       if (idx > 0 && idx % 5 === 0) {
         const slot = document.createElement('div');
         slot.className = 'post sponsored';
@@ -116,7 +116,7 @@ async function loadFeed() {
           <div class="ad-label">Patrocinado</div>
           <ins class="adsbygoogle"
                style="display:block"
-               data-ad-client="ca-pub-XXXXXXXXXXXX"
+               data-ad-client="ca-pub-4481682062230576"
                data-ad-slot="1234567890"
                data-ad-format="fluid"
                data-full-width-responsive="true"></ins>

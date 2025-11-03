@@ -15,8 +15,7 @@ router.post('/', authRequired, async (req, res) => {
   const parsed = createSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
   const { postId, content } = parsed.data;
-  const comment = await prisma.comment.create({
-    data: { postId, content, authorId: req.user.id } });
+  const comment = await prisma.comment.create({ data: { postId, content, authorId: req.user.id } });
   res.json(comment);
 });
 
