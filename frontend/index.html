@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorkThread — Tira del hilo y encuentra trabajo!</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <!-- AdSense opcional: reemplaza ca-pub y slot si lo usas
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+</head>
+<body class="auth-no">
+  <header class="topbar">
+    <div class="brand">WorkThread</div>
+    <nav>
+      <button id="btn-jobs" class="primary only-auth">Empleos</button>
+      <button id="btn-feed" class="only-auth">Feed</button>
+      <button id="btn-login">Entrar</button>
+      <button id="btn-register">Crear cuenta</button>
+      <button id="btn-logout" class="hidden">Salir</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="auth" class="card">
+      <h2 id="auth-title">Entrar</h2>
+      <form id="auth-form">
+        <label>Email <input type="email" name="email" required /></label>
+        <label>Password <input type="password" name="password" required /></label>
+        <div id="username-wrap" class="hidden"><label>Usuario <input type="text" name="username" /></label></div>
+        <button type="submit" class="primary">Continuar</button>
+        <p id="auth-help"></p>
+      </form>
+    </section>
+
+    <section id="jobs" class="card hidden">
+      <h2>Empleos</h2>
+      <div class="job-search-grid">
+        <input id="job-q" placeholder="Buscar por título, empresa o descripción" />
+        <input id="job-skills" placeholder="Skills (coma separadas)" />
+        <input id="job-location" placeholder="Ubicación (ciudad/país)" />
+        <select id="job-remote">
+          <option value="">Remoto o presencial</option>
+          <option value="true">Solo remoto</option>
+          <option value="false">Solo presencial</option>
+        </select>
+        <input id="job-min" type="number" placeholder="Salario mínimo" />
+        <button id="job-search" class="primary">Buscar</button>
+        <button id="job-post" class="secondary">Publicar empleo</button>
+      </div>
+      <div id="job-list"></div>
+    </section>
+
+    <section id="composer" class="card hidden">
+      <h2>Publicar</h2>
+      <textarea id="post-content" maxlength="2000" placeholder="Comparte un texto técnico, una duda o una pista de empleo..."></textarea>
+      <input id="post-tags" placeholder="tags (coma separadas)" />
+      <button id="post-send" class="primary">Publicar</button>
+    </section>
+
+    <section id="feed" class="card hidden">
+      <h2>Feed</h2>
+      <div id="posts"></div>
+    </section>
+
+    <section id="modal" class="modal hidden">
+      <div class="modal-card">
+        <h3 id="modal-title">Comentarios</h3>
+        <div id="modal-body"></div>
+        <textarea id="comment-input" placeholder="Escribe un comentario..."></textarea>
+        <div class="modal-actions">
+          <button id="comment-send" class="primary">Enviar</button>
+          <button id="modal-close">Cerrar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">WorkThread — Tira del hilo y encuentra trabajo!</footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
